@@ -7,7 +7,7 @@ st.title("🚀 Mi Rastreador de Inversiones")
 
 # 1. LISTA DE ACCIONES (Aquí puedes añadir las que quieras)
 # Importante: Para acciones de Perú, usa .LM al final
-tickers_disponibles = ["BACKUSI1.LM", "NVDA", "ALICORC1.LM", "TTD", "INRETC1.LM", "BBVAC1.LM", "ORYGENC1.LM", "SPHQ", "AUNA.LM", "KO"]
+tickers_disponibles = ["BACKUSI1.LM", "NVDA", "ALICORC1.LM", "TTD", "INRETC1.LM", "BBVAC1.LM", "ORYGENC1.LM", "SPHQ", "AUNA.LM", "KO", "AAPL"]
 
 # 2. SELECCIÓN DE USUARIO
 seleccion = st.multiselect("Selecciona tus acciones:", tickers_disponibles, default=["AAPL"])

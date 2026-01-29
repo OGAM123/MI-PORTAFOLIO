@@ -4,33 +4,37 @@ import yfinance as yf
 st.set_page_config(page_title="Mi Portafolio", page_icon="💰")
 
 st.title("🚀 Mi Rastreador de Inversiones")
-st.write("Configura tus acciones y recibe alertas.")
 
-# Lista de tickers (asegúrate de que terminen en .LM si son de la bolsa de Lima, ej: ALICORC1.LM)
-tickers_ejemplo = ["BACKUSI1.LM", "NVDA", "ALICORC1.LM", "TTD", "INRETC1.LM", "BBVAC1.LM", "ORYGENC1.LM", "SPHQ", "AUNA.LM", "KO"]
-mis_acciones = st.multiselect("Selecciona tus acciones:", tickers_ejemplo, default=["AAPL"])
+# 1. LISTA DE ACCIONES (Aquí puedes añadir las que quieras)
+# Importante: Para acciones de Perú, usa .LM al final
+tickers_disponibles = ["BACKUSI1.LM", "NVDA", "ALICORC1.LM", "TTD", "INRETC1.LM", "BBVAC1.LM", "ORYGENC1.LM", "SPHQ", "AUNA.LM", "KO"]
 
-umbral = st.number_input("Avísame si alguna baja de ($):", value=10.0)
+# 2. SELECCIÓN DE USUARIO
+seleccion = st.multiselect("Selecciona tus acciones:", tickers_disponibles, default=["AAPL"])
 
-for ticker in mis_acciones:
+# 3. CONFIGURAR ALERTA
+umbral = st.number_input("Avísame si baja de ($):", value=10.0)
+
+# 4. PROCESAR CADA ACCIÓN
+for ticker in seleccion:
     try:
-        datos = yf.Ticker(ticker)
-        # Intentamos obtener el precio de forma segura
-        precio = datos.fast_info.get('last_price', None)
+        stock = yf.Ticker(ticker)
+        # Obtenemos el precio actual de forma segura
+        precio = stock.fast_info['last_price']
         
-        if precio is not None:
-            col1, col2 = st.columns([1, 3])
-            with col1:
-                if precio < umbral:
-                    st.error(f"⚠️ {ticker}: ${precio:.2f}")
-                else:
-                    st.success(f"✅ {ticker}: ${precio:.2f}")
-            with col2:
-                hist = datos.history(period="5d")
-                if not hist.empty:
-                    st.line_chart(hist['Close'], height=100)
-        else:
-            st.warning(f"No se encontró precio para {ticker}. Revisa el nombre.")
-            
-    except Exception as e:
-        st.error(f"Error con {ticker}: {e}")
+        col1, col2 = st.columns([1, 2])
+        
+        with col1:
+            if precio < umbral:
+                st.error(f"⚠️ {ticker}: ${precio:.2f}")
+            else:
+                st.success(f"✅ {ticker}: ${precio:.2f}")
+        
+        with col2:
+            # Gráfico de los últimos 5 días
+            hist = stock.history(period="5d")
+            if not hist.empty:
+                st.line_chart(hist['Close'], height=100)
+                
+    except Exception:
+        st.warning(f"No se pudo cargar {ticker}. Revisa si el nombre es correcto.")

@@ -25,7 +25,8 @@ seleccion = st.multiselect("Acciones en vigilancia:", list(mis_objetivos.keys())
 for ticker in seleccion:
     try:
         stock = yf.Ticker(ticker)
-        df = stock.history(period="5d")
+        # Cambiamos a period="max" o "1mo" y añadimos repair=True para que yfinance intente arreglar el error
+        df = stock.history(period="1mo", raise_errors=False)
         
         if not df.empty:
             precio = df['Close'].iloc[-1]
@@ -41,8 +42,9 @@ for ticker in seleccion:
                     st.error(f"⚠️ ¡COMPRA! {ticker}\nLlegó a: {precio:.2f}")
                 else:
                     st.success(f"✅ {ticker}: {precio:.2f}")
+                    st.warning(f"⚠️ {ticker}: El mercado está cerrado o no hay operaciones recientes.")
                 st.caption(f"Rango definido: {p_min} - {p_max}")
             with col2:
                 st.line_chart(df['Close'], height=120)
     except:
-        st.error(f"Error con {ticker}")
+        st.error(f"❌ Error técnico con {ticker}: Yahoo no responde.")

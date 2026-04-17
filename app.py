@@ -42,7 +42,7 @@ for ticker in seleccion:
                     st.error(f"⚠️ ¡COMPRA! {ticker}\nLlegó a: {precio:.2f}")
                 else:
                     st.success(f"✅ {ticker}: {precio:.2f}")
-                    st.warning(f"⚠️ {ticker}: El mercado está cerrado o no hay operaciones recientes.")
+                   
                 st.caption(f"Rango definido: {p_min} - {p_max}")
             with col2:
                 st.line_chart(df['Close'], height=120)

@@ -19,7 +19,13 @@ mis_objetivos = {
     "SPHQ": [77.75, 100.70],
     "CREDITC1.LM": [6.0, 7.30],
 }
+# Crea un diccionario para "traducir" los nombres en la pantalla
+nombres_pantalla = {
+    "EGEPEC1.LM": "ORYGENC1"
+}
 
+# Luego, cuando imprimas el nombre en Streamlit, usa:
+# st.write(f"Acción: {nombres_pantalla.get(ticker, ticker)}")
 seleccion = st.multiselect("Acciones en vigilancia:", list(mis_objetivos.keys()), default=["NVDA"])
 
 for ticker in seleccion:

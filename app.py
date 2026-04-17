@@ -17,6 +17,7 @@ mis_objetivos = {
     "ORYGENC1.LM": [2.75, 3.30],
     "AUNA": [5.4, 8.70],
     "SPHQ": [77.75, 100.70],
+    "CREDITC1": [6.0, 7.30],
 }
 
 seleccion = st.multiselect("Acciones en vigilancia:", list(mis_objetivos.keys()), default=["NVDA"])

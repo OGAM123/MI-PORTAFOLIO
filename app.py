@@ -23,7 +23,7 @@ mis_objetivos = {
 # Crea un diccionario para "traducir" los nombres en la pantalla
 nombres_pantalla = {
     "EGEPEC1.LM": "ORYGENC1"
-    "BTC-USD": "Bitcoin" ,
+    "BTC-USD": "Bitcoin",
 }
 
 # Luego, cuando imprimas el nombre en Streamlit, usa:

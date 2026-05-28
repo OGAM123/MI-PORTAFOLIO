@@ -18,12 +18,12 @@ mis_objetivos = {
     "AUNA": [5.4, 8.70],
     "SPHQ": [77.75, 100.70],
     "CREDITC1.LM": [6.0, 7.30],
-    "BTC-USD": [73300.0, 110000.0],
+    "BTC-USD": [73300.0, 110000.0]
 }
 # Crea un diccionario para "traducir" los nombres en la pantalla
 nombres_pantalla = {
     "EGEPEC1.LM": "ORYGENC1"
-    "BTC-USD": "Bitcoin",
+    "BTC-USD": "Bitcoin"
 }
 
 # Luego, cuando imprimas el nombre en Streamlit, usa:

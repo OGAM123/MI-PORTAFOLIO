@@ -18,7 +18,7 @@ mis_objetivos = {
     "AUNA": [5.4, 8.70],
     "SPHQ": [77.75, 100.70],
     "CREDITC1.LM": [6.0, 7.30],
-    "BTC": [73300.0, 110000.0]
+    "BTC": [73 300.0, 110 000.0]
 }
 # Crea un diccionario para "traducir" los nombres en la pantalla
 nombres_pantalla = {
